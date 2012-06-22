@@ -1,0 +1,11 @@
+nginx:
+  rev: 0.101.6
+ohai:
+openssl:
+mysql:
+  git: https://github.com/cjoudrey/mysql
+runit:
+unicorn:
+application:
+application_nginx:
+application_ruby:

@@ -1,0 +1,17 @@
+cookbook_paths:
+- ./cookbooks
+recipes:
+- nginx
+- mysql::server
+- mysql::client
+- runit
+- sample
+node_attributes:
+  mysql:
+    server_root_password: changeit
+  sample:
+    authorized_keys: qweweweq
+    repository: git@bitbucket.org:iafonov/statsd-tv.git
+    repository_host: bitbucket.org
+    revision: master
+    deploy_key: bitbucket
