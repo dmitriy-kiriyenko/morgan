@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Installing ruby 1.9.3"
