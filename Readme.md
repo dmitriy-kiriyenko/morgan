@@ -27,12 +27,10 @@ Stack-rails uses soloist to run chef-solo and configure attributes via YAML file
 
 Let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](https://github.com/copycopter/copycopter-server) application. This is modern and up-to-date Rails 3 application which uses bundler and asset pipeline.
 
-* Download this repository to target server
+* Download this repository to a target server
 
 ```bash
-$ wget https://github.com/iafonov/stack-rails/tarball/master
-$ tar -zxf stack-rails.tar.gz
-$ mv iafonov-stack-rails-246c815/ stack-rails
+$ curl -L https://raw.github.com/iafonov/stack-rails/master/install | bash
 ```
 * It is really recommended to import this repository to your internal git repo (or fork it) and commit every change you're making
 * Run `./bootstrap/ubuntu_1_9_3.sh` to install Ruby 1.9.3
