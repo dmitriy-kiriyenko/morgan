@@ -1,17 +1,42 @@
+cookbooks:
+  nginx:
+    rev: 0.101.6
+  ohai:
+  openssl:
+  postgresql:
+  nodejs:
+    git: https://github.com/phlipper/chef-nodejs.git
+  runit:
+  unicorn:
+  application:
+  application_nginx:
+  application_ruby:
 cookbook_paths:
 - ./cookbooks
 recipes:
 - nginx
-- mysql::server
-- mysql::client
+- postgresql::client
+- postgresql::server
 - runit
-- sample
+- nodejs
+- rails_ghetto
 node_attributes:
-  mysql:
-    server_root_password: changeit
-  sample:
-    authorized_keys: qweweweq
-    repository: git@bitbucket.org:iafonov/statsd-tv.git
-    repository_host: bitbucket.org
-    revision: master
-    deploy_key: bitbucket
+  postgresql:
+    password: 
+      postgres: changeit
+  rails_ghetto:
+    deployment_user: deploy
+    deployment_group: deploy
+    libs:
+      - libxslt-dev
+      - libxml2-dev
+    applications:
+      copycopter:
+        repository: https://github.com/iafonov/copycopter-server.git
+        revision: master
+        unicorn_port: 8080
+        server_name: "_"
+        compile_assets: true
+        run_migrations: true
+        rails_environment: production
+        database: { adapter: postgresql, database: copycopter, host: localhost, username: postgres, password: changeit }
