@@ -29,9 +29,11 @@ As an example let's bootstrap infrastructure and deploy thoughtbot's open-source
 
 * Download this repository to target server
 
-    wget https://github.com/iafonov/stack-rails/tarball/master
-    tar -zxf stack-rails.tar.gz
-    mv iafonov-stack-rails-246c815/ stack-rails
+```bash
+wget https://github.com/iafonov/stack-rails/tarball/master
+tar -zxf stack-rails.tar.gz
+mv iafonov-stack-rails-246c815/ stack-rails
+```
 
 * Run `./bootstrap/ubuntu_1_9_3.sh` to install Ruby 1.9.3
 * Review and edit `soloistrc` file, the most important section is `attributes` section where you can customize recipes behavior and tune configuration files:
