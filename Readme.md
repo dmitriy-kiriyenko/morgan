@@ -30,11 +30,11 @@ Let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](
 * Download this repository to target server
 
 ```bash
-wget https://github.com/iafonov/stack-rails/tarball/master
-tar -zxf stack-rails.tar.gz
-mv iafonov-stack-rails-246c815/ stack-rails
+$ wget https://github.com/iafonov/stack-rails/tarball/master
+$ tar -zxf stack-rails.tar.gz
+$ mv iafonov-stack-rails-246c815/ stack-rails
 ```
-* It is really recommended to import this repository to your internal git repo (or fork it) and commit every changes you've made
+* It is really recommended to import this repository to your internal git repo (or fork it) and commit every changes you're making
 * Run `./bootstrap/ubuntu_1_9_3.sh` to install Ruby 1.9.3
 * Review and edit `soloistrc` file. The most important section is `attributes` section where you can customize recipes behavior and tune configuration files:
 
@@ -81,5 +81,5 @@ $ vagrant up
 $ vagrant destroy && vagrant up
 ```
 
-
+Extracted from [telemetry.io](http://telemetry.io) project.
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License
