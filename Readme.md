@@ -23,9 +23,9 @@ This step should be run once and consists of installing ruby and chef (soloist).
 
 Stack-rails uses soloist to run chef-solo and configure attributes via YAML file. Every time when you're running `soloist` command from the stack-rails folder it would pick-up configuration from `soloistrc` file and converge the system.
 
-## The complete walkthrough
+## Quick real world example
 
-As an example let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](https://github.com/copycopter/copycopter-server) application. This is modern and up-to-date Rails 3 application which uses bundler and asset pipeline.
+Let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](https://github.com/copycopter/copycopter-server) application. This is modern and up-to-date Rails 3 application which uses bundler and asset pipeline.
 
 * Download this repository to target server
 
@@ -34,9 +34,9 @@ wget https://github.com/iafonov/stack-rails/tarball/master
 tar -zxf stack-rails.tar.gz
 mv iafonov-stack-rails-246c815/ stack-rails
 ```
-
+* It is really recommended to import this repository to your internal git repo (or fork it) and commit every changes you've made
 * Run `./bootstrap/ubuntu_1_9_3.sh` to install Ruby 1.9.3
-* Review and edit `soloistrc` file, the most important section is `attributes` section where you can customize recipes behavior and tune configuration files:
+* Review and edit `soloistrc` file. The most important section is `attributes` section where you can customize recipes behavior and tune configuration files:
 
 ```yaml
 node_attributes:
@@ -63,5 +63,23 @@ node_attributes:
 ```
 
 * Run `soloist` to converge the system and make a first deploy!
+
+## Testing with Vagrant
+
+* [Setup Vagrant on your system](http://vagrantup.com/v1/docs/getting-started/index.html).
+* Add Ubuntu 12.04 image and run virtual machine
+
+```bash
+$ vagrant box add precise64 http://files.vagrantup.com/precise64.box
+$ vagrant init precise64
+$ vagrant up
+```
+
+* Now you're ready to test stack-rails. If at any time you're feel that you're got stuck you can respawn the machine by running:
+
+```bash
+$ vagrant destroy && vagrant up
+```
+
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License
