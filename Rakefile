@@ -2,7 +2,8 @@ require 'yaml'
 
 desc "Install cookbooks"
 task :cookbooks do
-  cookbooks = YAML.load(File.read("cookbooks.yml"))
+  cookbooks = YAML.load(File.read("soloistrc"))["cookbooks"]
+
   cookbooks.each do |name, data|
     data ||= {}
     target = "cookbooks/#{name}"
