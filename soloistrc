@@ -11,6 +11,8 @@ cookbooks:
   application:
   application_nginx:
   application_ruby:
+  rails_ghetto:
+    git: git://github.com/iafonov/rails_ghetto.git
 cookbook_paths:
 - ./cookbooks
 recipes:

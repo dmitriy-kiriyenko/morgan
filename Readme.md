@@ -8,7 +8,7 @@ A convenient way to quickly setup & maintain web server infrastructure using [ch
 
 ## Out of the box supported stacks
 
-* PostgreSQL/Nginx/Unicorn - *default*
+* PostgreSQL/Nginx/Unicorn
 * MySQL/Nginx/Unicorn
 
 ## How it works
@@ -27,7 +27,12 @@ Stack-rails uses soloist to run chef-solo and configure attributes via YAML file
 
 As an example let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](https://github.com/copycopter/copycopter-server) application. This is modern and up-to-date Rails 3 application which uses bundler and asset pipeline.
 
-* Clone this repository to target server
+* Download this repository to target server
+
+    wget https://github.com/iafonov/stack-rails/tarball/master
+    tar -zxf stack-rails.tar.gz
+    mv iafonov-stack-rails-246c815/ stack-rails
+
 * Run `./bootstrap/ubuntu_1_9_3.sh` to install Ruby 1.9.3
 * Review and edit `soloistrc` file, the most important section is `attributes` section where you can customize recipes behavior and tune configuration files:
 
