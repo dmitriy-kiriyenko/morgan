@@ -1,4 +1,4 @@
-# Stack-rails
+# Stacker
 
 A convenient way to quickly setup & maintain web server infrastructure using [chef](http://www.opscode.com/chef/) & [soloist](https://github.com/mkocher/soloist).
 
@@ -8,12 +8,11 @@ A convenient way to quickly setup & maintain web server infrastructure using [ch
 
 ## Out of the box supported stacks
 
-* PostgreSQL/Nginx/Unicorn
-* MySQL/Nginx/Unicorn
+* Ruby on Rails - PostgreSQL/nginx/Unicorn
 
 ## How it works
 
-Stack-rails is a set of preselected cookbooks that are used to quickly setup and run Rails applications and maintain underlying infrastructure.
+Stacker is a set of preselected cookbooks that are used to quickly setup and run web applications and maintain underlying infrastructure.
 
 ### Step 1 - bootstrap environment
 
@@ -21,17 +20,18 @@ This step should be run once and consists of installing ruby and chef (soloist).
 
 ### Step 2 - bootstrap infrastructure and maintain it using chef
 
-Stack-rails uses soloist to run chef-solo and configure attributes via YAML file. Every time when you're running `soloist` command from the stack-rails folder it would pick-up configuration from `soloistrc` file and converge the system.
+Stacker uses soloist to run chef-solo and configure attributes via YAML file. Every time when you're running `soloist` command from the stacker folder it would pick-up configuration from `soloistrc` file and converge the system.
 
 ## Quick real world example
 
-Let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](https://github.com/copycopter/copycopter-server) application. This is modern and up-to-date Rails 3 application which uses bundler and asset pipeline.
+Let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](https://github.com/copycopter/copycopter-server) application. This is modern and up-to-date Rails 3 application which uses bundler and asset pipeline. We will use nginx as reverse-proxy and Unicorn as application server.
 
 * Download this repository to a target server
 
 ```bash
-$ curl -L https://raw.github.com/iafonov/stack-rails/master/install | bash
+$ curl -L https://raw.github.com/iafonov/stacker/master/install | bash
 ```
+
 * It is really recommended to import this repository to your internal git repo (or fork it) and commit every change you're making
 * Run `./bootstrap/ubuntu_1_9_3.sh` to install Ruby 1.9.3
 * Review and edit `soloistrc` file. The most important section is `attributes` section where you can customize recipes behavior and tune configuration files:
@@ -45,7 +45,7 @@ node_attributes:
     deployment_user: deploy   # user under which the application will run
     deployment_group: deploy  # group under which the application will run
     libs:                     # gems native extensions compile time dependencies
-      - libxslt-dev  
+      - libxslt-dev
       - libxml2-dev
     applications:
       copycopter:             # application name. it would be used to generate init.d script
@@ -73,15 +73,15 @@ $ vagrant init precise64
 $ vagrant up
 ```
 
-* Now you're ready to test stack-rails. 
+* Now you're ready to test stacker.
 
 ```bash
 $ vagrant ssh
-$ (on virtual machine) curl -L https://raw.github.com/iafonov/stack-rails/master/install | bash
-$ (on virtual machine) cd stack-rails
+$ (on virtual machine) curl -L https://raw.github.com/iafonov/stacker/master/install | bash
+$ (on virtual machine) cd stacker
 $ (on virtual machine) ./bootstrap/ubuntu_1_9_3.sh
 $ (on virtual machine) soloist
-$ (on virtual machine) curl 127.0.0.1:8080 
+$ (on virtual machine) curl 127.0.0.1:8080
 
     You shoud get response from the deployed application
 
@@ -93,5 +93,4 @@ $ (on virtual machine) curl 127.0.0.1:8080
 $ vagrant destroy && vagrant up
 ```
 
-
-© 2012 [Igor Afonov](https://iafonov.github.com) MIT License - extracted from [telemetry.io](http://telemetry.io) project
+© 2012 [Igor Afonov](https://iafonov.github.com) MIT License &ndash; extracted from [telemetry.io](http://telemetry.io) project
