@@ -73,10 +73,25 @@ $ vagrant init precise64
 $ vagrant up
 ```
 
-* Now you're ready to test stack-rails. If at any time you're feel that you're got stuck you can respawn the machine by running:
+* Now you're ready to test stack-rails. 
+
+```bash
+$ vagrant ssh
+$ (on virtual machine) curl -L https://raw.github.com/iafonov/stack-rails/master/install | bash
+$ (on virtual machine) cd stack-rails
+$ (on virtual machine) ./bootstrap/ubuntu_1_9_3.sh
+$ (on virtual machine) soloist
+$ (on virtual machine) curl 127.0.0.1:8080 
+
+    You shoud get response from the deployed application
+
+```
+
+* If at any time you're feel that you're got stuck you can completely reset the machine by running:
 
 ```bash
 $ vagrant destroy && vagrant up
 ```
+
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License - extracted from [telemetry.io](http://telemetry.io) project
