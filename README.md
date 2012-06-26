@@ -77,7 +77,7 @@ $ vagrant up
 
 ```bash
 $ vagrant ssh
-$ (on virtual machine) curl -L https://raw.github.com/iafonov/stacker/master/install | bash
+$ (on virtual machine) sudo apt-get install -y curl && curl -L https://raw.github.com/iafonov/stacker/master/install | bash
 $ (on virtual machine) cd stacker
 $ (on virtual machine) ./bootstrap/ubuntu_1_9_3.sh
 $ (on virtual machine) soloist

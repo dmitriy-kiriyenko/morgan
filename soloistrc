@@ -5,6 +5,8 @@ cookbooks:
   openssl:
   postgresql:
   apt:
+  firewall:
+  ufw:
   nodejs:
     git: https://github.com/xer0x/cookbook-nodejs
   runit:
@@ -22,11 +24,16 @@ recipes:
 - postgresql::server
 - runit
 - nodejs
+- ufw
 - rails_ghetto
 node_attributes:
   postgresql:
     password: 
       postgres: changeit
+  firewall:
+    rules:
+      - http:
+          port: 80
   rails_ghetto:
     deployment_user: deploy
     deployment_group: deploy
