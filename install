@@ -10,4 +10,4 @@ rm stacker/install
 cd stacker
 
 echo "** Everything was installed to $DIR/stacker"
-echo "** Next step is to run bootstrap script: $ ./bootstrap/ubuntu_1_9_2.sh"
+echo "** Next step is to run bootstrap script: $ ./bootstrap/ubuntu_1_9_3.sh"
