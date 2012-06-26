@@ -29,7 +29,7 @@ Let's bootstrap infrastructure and deploy thoughtbot's open-source [copycopter](
 * Download this repository to a target server
 
 ```bash
-$ curl -L https://raw.github.com/iafonov/stacker/master/install | bash
+$ sudo apt-get install curl && curl -L https://raw.github.com/iafonov/stacker/master/install | bash
 ```
 
 * It is really recommended to import this repository to your internal git repo (or fork it) and commit every change you're making
