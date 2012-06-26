@@ -7,6 +7,7 @@ tar -zxf master
 rm master
 mv iafonov-stacker-* stacker
 rm stacker/install
+cd stacker
 
 echo "** Everything was installed to $DIR/stacker"
-echo "** Next step is to run bootstrap script from $DIR/stacker/bootstrap directory"
+echo "** Next step is to run bootstrap script: $ ./bootstrap/ubuntu_1_9_2.sh"
