@@ -4,8 +4,9 @@ cookbooks:
   ohai:
   openssl:
   postgresql:
+  apt:
   nodejs:
-    git: https://github.com/phlipper/chef-nodejs.git
+    git: https://github.com/xer0x/cookbook-nodejs
   runit:
   unicorn:
   application:

@@ -10,4 +10,4 @@ sudo gem install soloist
 cd $DIR && cd ../
 
 rake cookbooks
-echo "Now you can edit soloistrc file and run soloist to converge the system"
+echo "** Now you can edit soloistrc file and run soloist to converge the system"
