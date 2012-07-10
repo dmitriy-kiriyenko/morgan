@@ -33,7 +33,7 @@ Test that everything is ok:
 
 You should see clients list.
 
-## Managing cookbooks
+## Cookbooks
 
 ### librarian-chef
 
@@ -45,7 +45,7 @@ Upload cookbooks to chef server
 
 `$ ./bin/knife cookbook upload -a`
 
-*Hint: good place to start searching for a cookbook is official Opscode repository - [https://github.com/opscode-cookbooks](https://github.com/opscode-cookbooks)*
+*Hint: a good place to start searching for a cookbook is an official Opscode repository - [https://github.com/opscode-cookbooks](https://github.com/opscode-cookbooks)*
 
 ### Managing custom cookbooks
 
@@ -63,7 +63,7 @@ The easiest way to create a new role is to take any of the bundled roles and use
 
 `$ ./bin/knife role from file roles/[role_name].rb`
 
-**Important note: - Every time you update your roler you have to upload it to server**
+**Important note: - Every time you update your role you have to upload it to the server**
 
 ### Assigning a role to a node
 
@@ -84,6 +84,6 @@ If you're using the bundled `base` role there is a special user on your node `de
 
 `$ ./bin/knife ssh "role:base" -x deploy "sudo chef-client"`
 
-There is a handy rake task `rake deploy` which uploads cookbooks and runs `chef-client`
+There is a handy rake task `rake deploy` which uploads cookbooks, updates roles and runs `chef-client`
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License

@@ -14,4 +14,4 @@ default_attributes :maintance => {
                      ]
                    }
 
-run_list "recipe[maintance]"
+run_list "recipe[ufw]", "recipe[maintance]"
