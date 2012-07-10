@@ -1,7 +1,7 @@
 .rake_test_cache
 bin/
 vendor/
-.chef/client.pem
+.chef/*.pem
 .chef/checksums
 .bundle/
 .vagrant
