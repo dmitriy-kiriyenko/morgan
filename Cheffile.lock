@@ -1,0 +1,27 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    dmg (1.0.0)
+    git (1.0.0)
+      dmg (>= 0.0.0)
+      runit (>= 0.0.0)
+      yum (>= 0.0.0)
+    postfix (1.2.0)
+    runit (0.15.0)
+    ufw (0.6.1)
+      firewall (>= 0.8)
+    yum (0.6.2)
+
+GIT
+  remote: https://github.com/opscode-cookbooks/firewall.git
+  ref: master
+  sha: 776b2e3011540ba1c852d27169070d80fc5c7caf
+  specs:
+    firewall (0.8.0)
+
+DEPENDENCIES
+  firewall (>= 0)
+  git (>= 0)
+  postfix (>= 0)
+  ufw (>= 0)
+

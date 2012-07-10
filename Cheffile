@@ -1,0 +1,14 @@
+site 'http://community.opscode.com/api/v1'
+
+# Git cookbook installs git-core, needed for deployment
+cookbook 'git'
+
+# ufw - it is always a good idea to enable and setup firewall for anything visible for the outside world
+cookbook 'firewall', :git => 'https://github.com/opscode-cookbooks/firewall.git'
+cookbook 'ufw'
+
+# MySQL - server + client
+# cookbook 'mysql', :git => 'https://github.com/cjoudrey/mysql'
+
+# Postfix
+cookbook 'postfix'

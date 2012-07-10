@@ -1,0 +1,9 @@
+.rake_test_cache
+bin/
+vendor/
+.chef/client.pem
+.chef/checksums
+.bundle/
+.vagrant
+/cookbooks
+/tmp
