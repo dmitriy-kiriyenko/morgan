@@ -19,7 +19,7 @@ Install required gems:
 
 See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootstrap)  for more information.
 
-## Create a client for your developer machine
+## Creating the first client
 
 1. Navigate to http://192.168.33.11:4040, (It's better to reset credentials for webui, default are `admin/chefchef`)
 2. Create a client with the admin privileges
