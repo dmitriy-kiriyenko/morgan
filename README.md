@@ -132,6 +132,12 @@ Installs and sets up MySQL server and client. See [MySQL cookbook description](h
 
 Hint: cookbook generates random password for `root` mysql user. You can later retrieve it as a node attribute `node[:mysql][:server_root_password]`
 
+### postgresql-server
+
+Installs and sets up PostgreSQL server and client. See [PostgreSQL cookbook description](https://github.com/opscode-cookbooks/postgresql) for advanced setup & tuning.
+
+Hint: cookbook generates random password for `postgres` user. You can later retrieve it as a node attribute `node[:postgresql][:password][:postgres]`
+
 ### nginx
 
 Installs nginx from Ubuntu repository. You can tune it to be built from sources. Also applying this role will open port 80. 
@@ -139,5 +145,9 @@ Installs nginx from Ubuntu repository. You can tune it to be built from sources.
 ### elasticsearch
 
 Installs elasticsearch & creates a service wrapper for it
+
+### nodejs
+
+Installs Node.js from deb package. Can be used to run node applications and as javascript environment for Rails Asset Pipeline. Package installed from Chris Lea's PPA.
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License

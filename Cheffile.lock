@@ -1,6 +1,16 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
+    apache2 (1.1.10)
+    application (1.0.0)
+      apache2 (>= 0.0.0)
+      gunicorn (>= 0.0.0)
+      passenger_apache2 (>= 0.0.0)
+      php (>= 0.0.0)
+      python (>= 1.0.6)
+      runit (>= 0.0.0)
+      tomcat (>= 0.0.0)
+      unicorn (>= 0.0.0)
     ark (0.0.10)
     bluepill (1.0.4)
     build-essential (1.0.2)
@@ -10,6 +20,9 @@ SITE
       dmg (>= 0.0.0)
       runit (>= 0.0.0)
       yum (>= 0.0.0)
+    gunicorn (1.0.0)
+      python (>= 0)
+    java (1.5.0)
     nginx (0.101.6)
       bluepill (>= 0.0.0)
       build-essential (>= 0.0.0)
@@ -18,12 +31,27 @@ SITE
       yum (>= 0.0.0)
     ohai (1.0.2)
     openssl (1.0.0)
+    passenger_apache2 (0.99.4)
+      apache2 (>= 1.0.4)
+      build-essential (>= 0.0.0)
+    php (1.0.2)
+      build-essential (>= 0.0.0)
+      mysql (>= 0.0.0)
+      xml (>= 0.0.0)
     postfix (1.2.0)
+    postgresql (0.99.4)
+      openssl (>= 0.0.0)
+    python (1.0.6)
+      build-essential (>= 0.0.0)
     runit (0.15.0)
+    tomcat (0.10.4)
+      java (>= 0.0.0)
     ufw (0.6.1)
       firewall (>= 0.8)
+    unicorn (1.0.0)
     windows (1.3.0)
       chef_handler (>= 0.0.0)
+    xml (1.0.4)
     yum (0.6.2)
 
 GIT
@@ -34,6 +62,25 @@ GIT
     mysql (1.2.7)
       openssl (>= 0.0.0)
       windows (>= 0.0.0)
+
+GIT
+  remote: https://github.com/iafonov/chef-nodejs.git
+  ref: master
+  sha: 2de69ed8526bcc6d8f60b2ec03a5c2d9ed41b71d
+  specs:
+    nodejs (1.0.0)
+
+GIT
+  remote: https://github.com/opscode-cookbooks/application_ruby
+  ref: master
+  sha: 47ddb37a07454b3c16b30336fd4f1b3cdbc853b0
+  specs:
+    application_ruby (1.0.0)
+      apache2 (>= 0.0.0)
+      application (>= 0.0.0)
+      passenger_apache2 (>= 0.0.0)
+      runit (>= 0.0.0)
+      unicorn (>= 0.0.0)
 
 GIT
   remote: https://github.com/opscode-cookbooks/firewall.git
@@ -51,11 +98,14 @@ GIT
       ark (>= 0.0.0)
 
 DEPENDENCIES
+  application_ruby (>= 0)
   elasticsearch (>= 0)
   firewall (>= 0)
   git (>= 0)
   mysql (>= 0)
   nginx (>= 0)
+  nodejs (>= 0)
   postfix (>= 0)
+  postgresql (>= 0)
   ufw (>= 0)
 

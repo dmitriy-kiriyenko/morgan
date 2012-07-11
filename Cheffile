@@ -9,6 +9,7 @@ cookbook 'ufw'
 
 # MySQL - server + client
 cookbook 'mysql', :git => 'https://github.com/cjoudrey/mysql'
+cookbook 'postgresql'
 
 # nginx
 cookbook 'nginx'
@@ -18,3 +19,9 @@ cookbook 'postfix'
 
 # elasticsearch
 cookbook 'elasticsearch', :git => 'https://github.com/promisedlandt/cookbook-elasticsearch'
+
+# cookbook manages deployment of rails application
+cookbook 'application_ruby', :git => 'https://github.com/opscode-cookbooks/application_ruby'
+
+# Node.js
+cookbook 'nodejs', :git => 'https://github.com/iafonov/chef-nodejs.git'
