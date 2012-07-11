@@ -24,7 +24,7 @@ See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootst
 1. Navigate to http://192.168.33.11:4040, (It's better to reset credentials for webui, default are `admin/chefchef`)
 2. Create a client with the admin privileges
 3. Save private key to `.chef/client.pem` file
-4. Copy the validation key from server `/etc/chef/validation.pem` to `.chef/validation.pem`
+4. Copy the validation key from server `/etc/chef/validation.pem` to your dev machine `.chef/validation.pem`
 5. Edit `.chef/knife.rb` file. Set server url and your client name.
 
 Test that everything is ok:
@@ -128,8 +128,16 @@ See [postfix cookbook description](https://github.com/opscode-cookbooks/postfix)
 
 ### mysql-server
 
-Installs and sets up MySQL server and client. See MySQL cookbook description for advanced setup & tuning.
+Installs and sets up MySQL server and client. See [MySQL cookbook description](https://github.com/opscode-cookbooks/mysql) for advanced setup & tuning.
 
 Hint: cookbook generates random password for `root` mysql user. You can later retrieve it as a node attribute `node[:mysql][:server_root_password]`
+
+### nginx
+
+Installs nginx from Ubuntu repository. You can tune it to be built from sources. Also applying this role will open port 80. 
+
+### elasticsearch
+
+Installs elasticsearch & creates a service wrapper for it
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License

@@ -8,7 +8,13 @@ cookbook 'firewall', :git => 'https://github.com/opscode-cookbooks/firewall.git'
 cookbook 'ufw'
 
 # MySQL - server + client
-# cookbook 'mysql', :git => 'https://github.com/cjoudrey/mysql'
+cookbook 'mysql', :git => 'https://github.com/cjoudrey/mysql'
+
+# nginx
+cookbook 'nginx'
 
 # Postfix
 cookbook 'postfix'
+
+# elasticsearch
+cookbook 'elasticsearch', :git => 'https://github.com/promisedlandt/cookbook-elasticsearch'

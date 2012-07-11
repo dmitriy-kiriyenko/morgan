@@ -9,3 +9,8 @@ task :deploy do
   puts "Running chef-clients:"
   system('./bin/knife ssh "role:base" -x deploy "sudo chef-client"')
 end
+
+task :roles do
+  puts "Updating roles:"
+  Dir.glob("roles/*.rb").each{|role_path| system("./bin/knife role from file #{role_path}")}
+end
