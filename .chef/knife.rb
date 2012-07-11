@@ -1,6 +1,6 @@
 require 'librarian/chef/integration/knife'
 
-chef_server_url          'http://192.168.33.11:4000' # chef server url
+chef_server_url          'http://li483-124.members.linode.com:4000' # chef server url
 node_name                'ia'                        # your client name
 client_key               'client.pem'                # your client key
 

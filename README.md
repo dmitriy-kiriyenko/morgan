@@ -1,6 +1,6 @@
 # Boilerplate Chef Repository
 
-Template chef repository extracted from several projects.
+Boilerplate chef repository.
 
 ## Setup
 
@@ -88,7 +88,9 @@ There is a handy rake task `rake deploy` which uploads cookbooks, updates roles 
 
 ## Bundled roles
 
-### base
+There are several pre-bundled roles which you can use as a building blocks for a bigger "real" roles. This pre-bundled roles are named with an underscore sign and should not be used to search & query nodes. You should create roles with a meaningful names like 'appserver' or 'db-slave' it is better to avoid names like 'mysql' or 'postfix'.
+
+### _base
 
 Base role is applied to all nodes. It enables firewall and sets up special deployment and administrator accounts for a node. It sets up ssh authorized keys.
 
@@ -111,11 +113,11 @@ Here is quite self-descriptive sample attributes set for setting up deployment u
       ]
     }
 
-### chef-server
+### _chef-server
 
 Chef server role opens ports that are used for chef server (4000 & 4040). For a more rock-solid chef server setup it is better to put a proxy before (nginx or Apache).
 
-### postfix
+### _postfix
 
 This role installs postfix package and does minimal require configuration. Pay attention to set the following attributes:
 
@@ -126,28 +128,65 @@ This role installs postfix package and does minimal require configuration. Pay a
 
 See [postfix cookbook description](https://github.com/opscode-cookbooks/postfix) for advanced setup & tuning.
 
-### mysql-server
+### _mysql-server
 
 Installs and sets up MySQL server and client. See [MySQL cookbook description](https://github.com/opscode-cookbooks/mysql) for advanced setup & tuning.
 
 Hint: cookbook generates random password for `root` mysql user. You can later retrieve it as a node attribute `node[:mysql][:server_root_password]`
 
-### postgresql-server
+### _postgresql-server
 
 Installs and sets up PostgreSQL server and client. See [PostgreSQL cookbook description](https://github.com/opscode-cookbooks/postgresql) for advanced setup & tuning.
 
 Hint: cookbook generates random password for `postgres` user. You can later retrieve it as a node attribute `node[:postgresql][:password][:postgres]`
 
-### nginx
+### _nginx
 
-Installs nginx from Ubuntu repository. You can tune it to be built from sources. Also applying this role will open port 80. 
+Installs nginx from Ubuntu repository. You can tune it to be built from sources. Also applying this role will open port 80.
 
-### elasticsearch
+### _elasticsearch
 
 Installs elasticsearch & creates a service wrapper for it
 
-### nodejs
+### _nodejs
 
 Installs Node.js from deb package. Can be used to run node applications and as javascript environment for Rails Asset Pipeline. Package installed from Chris Lea's PPA.
+
+## Real world example
+
+Lets deploy a chef server and a rails application (as an example we will take [copycopter](https://github.com/copycopter/copycopter-server) by [thoughtbot](http://thoughtbot.com/)) to a server running Ubuntu 12.04. For example lets do it using small instance from Linode.
+
+* Deploy a new Linux distribution (Ubuntu 12.04 64bit)
+* Bootstrap chef-server
+
+`$ ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password yourpassword --distro server_ubuntu_1_9_3 --node-name "li483-124.members.linode.com"`
+
+* Navigate to http://li483-124.members.linode.com:4040. Default credentials are admin/chefchef. Change them after the first login.
+* Go to clients and create a client with admin privileges
+* Copy private key to `.chef/client.pem`
+* Edit `.chef/knife.rb` and set server url (with port) and your client name:
+
+```ruby
+chef_server_url          'http://li483-124.members.linode.com:4000' # chef server url
+node_name                'ia'                                       # your client name
+client_key               'client.pem'                               # your client key
+```
+
+* Run `$ ./bin/knife client list` from the repository root - you should see clients list
+* Copy `/etc/chef/validation.pem` and place it to `.chef/validation.pem`
+* Edit `roles/_base.rb` to satisfy your needs. (Don't forget to put your public keys)
+* Upload cookbooks and roles to server
+
+    $ ./bin/rake roles
+    $ ./bin/librarian-chef install
+    $ ./bin/knife cookbook upload -a
+
+* Bootstrap the node. Usually it would be a separate server. But in this case we would bootstrap the same physical server.
+
+** Important: check that server hostname is the same as its domain **
+
+`$ ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password rhib=Odye --distro ubuntu12.04-gems -r 'role[copycopter]' --node-name "copycopter"`
+
+* Navigate to http://li483-124.members.linode.com - you should see copycopter welcome screen.
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License

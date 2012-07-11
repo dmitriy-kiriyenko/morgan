@@ -7,7 +7,7 @@ task :deploy do
   puts "Updating cookbooks:"
   system('./bin/knife cookbook upload -a')
   puts "Running chef-clients:"
-  system('./bin/knife ssh "role:base" -x deploy "sudo chef-client"')
+  system('./bin/knife ssh "role:*" -x deploy "sudo chef-client"')
 end
 
 task :roles do

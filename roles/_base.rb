@@ -1,4 +1,4 @@
-name "base"
+name "_base"
 description "Base role applied to all nodes."
 
 default_attributes :maintance => {
