@@ -13,7 +13,7 @@ $ bundle install --binstubs
 ```
 
 ## Bootstrapping the chef server
- 
+
 ```console
 $ ./bin/knife bootstrap 192.168.33.11 --ssh-user vagrant --distro server_ubuntu_1_9_3 --node-name "chef.domain.com" --sudo
 ```
@@ -209,12 +209,15 @@ $ ./bin/knife cookbook upload -a
 
 * Bootstrap the node. Usually it would be a separate server. But in this case we would bootstrap the same physical server.
 
-** Important: check that server hostname is the same as its domain **
-
 ```console
-$ ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password rhib=Odye --distro ubuntu12.04-gems -r 'role[copycopter]' --node-name "copycopter"
+$ ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password yourpassword --distro ubuntu12.04-gems -r 'role[copycopter]' --node-name "copycopter"
 ```
 
+** Important: check that server hostname is the same as its domain **
+
 * Navigate to http://li483-124.members.linode.com - you should see copycopter welcome screen.
+
+### Contributors:
+* [Dmitriy Kiriyenko](https://github.com/dmitriy-kiriyenko)
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License
