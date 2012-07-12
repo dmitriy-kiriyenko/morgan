@@ -1,9 +1,9 @@
-deploy_user  = node[:deploy_user][:name]
-deploy_group = node[:deploy_user][:group]
-database_params = node[:copycopter][:database]
+deploy_user  = node['maintance']['deploy_user']['name']
+deploy_group = node['maintance']['deploy_user']['group']
+database_params = node['copycopter']['database']
 
-application "copycopter" do
-  path "/var/www/apps/copycopter"
+application 'copycopter' do
+  path '/var/www/apps/copycopter'
   owner deploy_user
   group deploy_group
 
@@ -13,23 +13,23 @@ application "copycopter" do
       user deploy_user
       group deploy_group
       cwd release_path
-      environment ({'RAILS_ENV' => node[:copycopter][:environment]})
+      environment ({'RAILS_ENV' => node['copycopter']['environment']})
     end
 
-    execute "compile_assets" do
-      command "bundle exec rake assets:precompile"
+    execute 'compile_assets' do
+      command 'bundle exec rake assets:precompile'
       user deploy_user
       group deploy_group
       cwd release_path
-      environment ({"RAILS_ENV" => node[:copycopter][:environment]})
+      environment ({'RAILS_ENV' => node['copycopter']['environment']})
     end
   end
 
-  repository "git@github.com:iafonov/copycopter-server.git"
-  revision node[:copycopter][:revision]
+  repository 'git@github.com:iafonov/copycopter-server.git'
+  revision node['copycopter']['revision']
 
   rails do
-    gems ["bundler"]
+    gems ['bundler']
 
     database do
       database_params.each do |key, value|
@@ -40,7 +40,8 @@ application "copycopter" do
 
   unicorn do
     restart_command do
-      execute "/etc/init.d/copycopter restart" do
+      service 'copycopter' do
+        action :restart
       end
     end
   end
