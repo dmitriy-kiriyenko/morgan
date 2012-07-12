@@ -17,8 +17,8 @@ if admin_users.any?
     ssh_key  = admin_user[:ssh_key]
 
     user username do
-      comment 'Admin #{username}'
-      home '/home/#{username}'
+      comment "Admin #{username}"
+      home "/home/#{username}"
       gid 'server_admin'
       supports :manage_home => true
     end
