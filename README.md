@@ -1,6 +1,6 @@
 # Boilerplate Chef Repository
 
-Boilerplate chef repository.
+Boilerplate chef repository. It comes with bundled set of frequently used tools, skeleton roles and widely used cookbooks.
 
 ## Setup
 
@@ -176,7 +176,7 @@ Installs Node.js from deb package. Can be used to run node applications and as j
 
 ## Foodcritic
 
-[Foodcritic](http://acrmp.github.com/foodcritic/) is bundled and can be used to lint your cookbooks.
+[Foodcritic](http://acrmp.github.com/foodcritic/) is bundled with stacker and can be used for linting your cookbooks.
 
 ```console
 ./bin/foodcritic vendor-cookbooks
