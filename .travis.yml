@@ -6,6 +6,6 @@ before_install:
   - ssh-keygen -t rsa -N "" -f ~/.ssh/identity
   - cat ~/.ssh/identity.pub > ~/.ssh/authorized_keys
   - printf "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
-script: ssh-agent bash -c 'rake test:self_bootstrap'
+script: ssh-agent bash -c './bin/cucumber features/'
 rvm:
   - 1.9.3

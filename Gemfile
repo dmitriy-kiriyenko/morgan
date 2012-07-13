@@ -9,3 +9,9 @@ gem 'foodcritic'
 group :development do
   gem 'vagrant'
 end
+
+group :test do
+  gem 'cucumber'
+  gem 'rspec-expectations'
+  gem 'rest-client'
+end

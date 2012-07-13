@@ -22,14 +22,3 @@ namespace :deploy do
     system('./bin/knife cookbook upload -a')
   end
 end
-
-namespace :test do
-  task :default => :self_bootstrap
-
-  task :self_bootstrap do
-    require 'socket'
-
-    system("ssh-add ~/.ssh/identity")
-    system("CI=true && ./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro server_ubuntu_1_9_3 --node-name '#{Socket.gethostname}' --sudo")
-  end
-end
