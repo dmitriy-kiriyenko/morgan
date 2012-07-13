@@ -1,6 +1,7 @@
 language: ruby
 bundler_args: --binstubs
 before_install:
+  - sudo apt-get install ruby1.9.1 ruby1.9.1-dev
   - rm -rf ~/.ssh
   - ssh-keygen -t rsa -N "" -f ~/.ssh/identity
   - cat ~/.ssh/identity.pub > ~/.ssh/authorized_keys

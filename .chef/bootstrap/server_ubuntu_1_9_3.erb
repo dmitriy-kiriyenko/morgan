@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 set -x
 
 install_1_9_3() {
-  if ruby -v | grep -q "1.9.3p194" >/dev/null ; then
+  if ruby -v | grep -q "1.9.3" >/dev/null ; then
     printf "Ruby 1.9.3 is already installed skipping...\n"
     return
   fi
