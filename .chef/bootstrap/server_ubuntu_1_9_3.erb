@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 set -x
 
 install_1_9_3() {
-  if [ "$TRAVIS" ]; then
+  if [ "$CI" ]; then
     printf "Saving cycles on Travis...\n"
     return
   fi

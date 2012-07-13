@@ -30,6 +30,6 @@ namespace :test do
     require 'socket'
 
     system("ssh-add ~/.ssh/identity")
-    system("./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro server_ubuntu_1_9_3 --node-name '#{Socket.gethostname}' --sudo")
+    system("CI=true && ./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro server_ubuntu_1_9_3 --node-name '#{Socket.gethostname}' --sudo")
   end
 end
