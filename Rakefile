@@ -1,13 +1,10 @@
-require 'rubygems'
-require 'chef'
-
 namespace :deploy do
   task :default => :all
 
-  desc 'Update chef server with roles and cookboks and deploy application'
+  desc 'Update chef server with roles and cookbooks and run chef-client on nodes'
   task :all => [:roles, :cookbooks, :application]
 
-  desc 'Push application code to all servers'
+  desc 'Run chef-client on all nodes'
   task :application do
     puts 'Running chef-clients:'
     system('./bin/knife ssh "role:*" -x deploy "sudo chef-client"')
