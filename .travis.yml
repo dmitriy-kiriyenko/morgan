@@ -1,0 +1,11 @@
+language: ruby
+bundler_args: --binstubs
+before_install:
+  - rm -rf ~/.ssh
+  - ssh-keygen -t rsa -N "" -f ~/.ssh/identity
+  - cat ~/.ssh/identity.pub > ~/.ssh/authorized_keys
+  - printf "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
+  - ssh-add ~/.ssh/identity
+script: ssh-agent bash -c 'rake test:self_bootstrap'
+rvm:
+  - 1.9.3

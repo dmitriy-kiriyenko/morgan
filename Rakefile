@@ -24,16 +24,9 @@ namespace :deploy do
 end
 
 namespace :test do
-  task :self_bootstrap do
-    system("bundle install --binstubs")
-    system <<-EOS
-      rm -rf ~/.ssh
-      ssh-keygen -t rsa -N "" -f ~/.ssh/identity
-      cat ~/.ssh/identity.pub > ~/.ssh/authorized_keys
-      printf "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
-      ssh-add ~/.ssh/identity
-    EOS
+  task :default => :self_bootstrap
 
+  task :self_bootstrap do
     system("./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro server_ubuntu_1_9_3 --node-name 'chef.localhost' --sudo")
   end
 end
