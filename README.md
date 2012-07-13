@@ -8,13 +8,13 @@ Fork this repository and name it appropriately (usually [project-name]-chef).
 
 Install required gems:
 
-```console
+```bash
 bundle install --binstubs
 ```
 
 ## Bootstrapping the chef server
 
-```console
+```bash
 ./bin/knife bootstrap 192.168.33.11 --ssh-user vagrant --distro server_ubuntu_1_9_3 --node-name "chef.domain.com" --sudo
 ```
 
@@ -33,7 +33,7 @@ See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootst
 
 Test that everything is ok:
 
-```console
+```bash
 ./bin/knife client list
 ```
 
@@ -45,13 +45,13 @@ You should see clients list.
 
 The project uses [`librarian-chef`](https://github.com/applicationsonline/librarian) to manage cookbooks. To install cookbooks run:
 
-```console
+```bash
 ./bin/librarian-chef install
 ```
 
 Upload cookbooks to chef server
 
-```console
+```bash
 ./bin/knife cookbook upload -a
 ```
 
@@ -71,7 +71,7 @@ Roles are building blocks of your infrastructure. Try to keep them small, concis
 
 The easiest way to create a new role is to take any of the bundled roles and use the same structure. To upload role to chef server use the following command:
 
-```console
+```bash
 ./bin/knife role from file roles/[role_name].rb
 ```
 
@@ -79,7 +79,7 @@ The easiest way to create a new role is to take any of the bundled roles and use
 
 ### Assigning a role to a node
 
-```console
+```bash
 ./bin/knife node run_list add nodename role[postfix]
 ```
 
@@ -87,7 +87,7 @@ The easiest way to create a new role is to take any of the bundled roles and use
 
 Review and edit `Cheffile` and `roles/base.rb` - it is recommended to start with minimum setup (like installing one package) and then start adding new packages and make changes doing a small controllable (and reversible) steps.
 
-```console
+```bash
 ./bin/knife role from file roles/base.rb
 ./bin/knife bootstrap 192.168.33.11 --ssh-user vagrant --distro ubuntu12.04-gems -r 'role[base]' --node-name "application" --sudo
 ```
@@ -98,7 +98,7 @@ See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootst
 
 If you're using the bundled `base` role there is a special user on your node `deploy` which is allowed to run `chef-client` with sudo privileges. To run `chef-client` on nodes you can run the following command:
 
-```console
+```bash
 ./bin/knife ssh "role:base" -x deploy "sudo chef-client"
 ```
 
@@ -178,7 +178,7 @@ Installs Node.js from deb package. Can be used to run node applications and as j
 
 [Foodcritic](http://acrmp.github.com/foodcritic/) is bundled with stacker and can be used for linting your cookbooks.
 
-```console
+```bash
 ./bin/foodcritic vendor-cookbooks
 ```
 It's a good practice to run it frequently and follow its suggestions.
@@ -190,7 +190,7 @@ Lets deploy a chef server and a rails application (as an example we will take [c
 * Deploy a new Linux distribution (Ubuntu 12.04 64bit)
 * Bootstrap chef-server
 
-```console
+```bash
 ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password yourpassword --distro server_ubuntu_1_9_3 --node-name "li483-124.members.linode.com"
 ```
 
@@ -210,7 +210,7 @@ client_key      'client.pem'                               # your client key
 * Edit `roles/_base.rb` to satisfy your needs. (Don't forget to put your public keys)
 * Upload cookbooks and roles to server
 
-```console
+```bash
 ./bin/rake roles
 ./bin/librarian-chef install
 ./bin/knife cookbook upload -a
@@ -218,7 +218,7 @@ client_key      'client.pem'                               # your client key
 
 * Bootstrap the node. Usually it would be a separate server. But in this case we would bootstrap the same physical server.
 
-```console
+```bash
 ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password yourpassword --distro ubuntu12.04-gems -r 'role[copycopter]' --node-name "copycopter"
 ```
 
