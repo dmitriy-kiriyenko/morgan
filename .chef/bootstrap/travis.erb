@@ -1,0 +1,53 @@
+<% "based on https://github.com/fnichol/knife-server/blob/master/lib/chef/knife/bootstrap/chef-server-debian.erb" %>
+bash -c '
+
+set -x
+
+install_1_9_3() {
+  apt-get -y install ruby1.9.1 ruby1.9.1-dev
+}
+
+setup() {
+  platform="$(lsb_release -is | tr [[:upper:]] [[:lower:]])"
+  platform_version="$(lsb_release -rs)"
+}
+
+add_opscode_apt_repo() {
+  echo "deb http://apt.opscode.com/ $(lsb_release -cs)-0.10 main" > \
+    /etc/apt/sources.list.d/opscode.list
+
+  # add the GPG Key and Update Index
+  mkdir -p /etc/apt/trusted.gpg.d
+  apt-get update
+  # permanent upgradeable keyring
+  apt-get install -y --force-yes opscode-keyring
+  apt-get upgrade -y
+}
+
+preseed_chef_pkg() {
+  local preseed=/var/cache/local/preseeding/chef-server.seed
+
+  mkdir -p $(dirname $preseed)
+  cat <<PRESEED > $preseed
+chef	chef/chef_server_url	string	http://127.0.0.1:4000
+chef-server-webui	chef-server-webui/admin_password	password	chefchef
+chef-solr	chef-solr/amqp_password	password	chefchef
+PRESEED
+
+  debconf-set-selections $preseed
+}
+
+install_chef_server() {
+  preseed_chef_pkg
+
+  apt-get install -y --force-yes chef chef-server
+}
+
+setup
+install_1_9_3
+add_opscode_apt_repo
+install_chef_server
+
+printf -- "-----> Bootstraping Chef Server on ${hostname} is complete.\n"
+
+'
