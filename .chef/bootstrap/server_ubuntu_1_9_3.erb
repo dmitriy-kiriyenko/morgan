@@ -6,6 +6,11 @@ export DEBIAN_FRONTEND=noninteractive
 set -x
 
 install_1_9_3() {
+  if ruby -v | grep -q "1.9.3p194" >/dev/null ; then
+    printf "Ruby 1.9.3 is already installed skipping...\n"
+    return
+  fi
+
   cd /tmp
   wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
   tar -xvzf ruby-1.9.3-p194.tar.gz
@@ -80,7 +85,6 @@ install_1_9_3
 set_hostname_for_ubuntu
 add_opscode_apt_repo
 install_chef_server
-enable_ssl_proxy
 
 printf -- "-----> Bootstraping Chef Server on ${hostname} is complete.\n"
 

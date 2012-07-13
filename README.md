@@ -226,7 +226,8 @@ client_key      'client.pem'                               # your client key
 
 * Navigate to http://li483-124.members.linode.com - you should see copycopter welcome screen.
 
-### Contributors:
+## Contributors:
+
 * [Dmitriy Kiriyenko](https://github.com/dmitriy-kiriyenko)
 
 © 2012 [Igor Afonov](https://iafonov.github.com) MIT License
