@@ -28,6 +28,6 @@ namespace :test do
 
   task :self_bootstrap do
     system("ssh-add ~/.ssh/identity")
-    system("./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro server_ubuntu_1_9_3 --sudo")
+    system("./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro travis --sudo")
   end
 end
