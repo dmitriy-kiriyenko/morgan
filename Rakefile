@@ -27,6 +27,7 @@ namespace :test do
   task :default => :self_bootstrap
 
   task :self_bootstrap do
+    system("ssh-add ~/.ssh/identity")
     system("./bin/knife bootstrap localhost --ssh-user #{ENV['USER']} --distro server_ubuntu_1_9_3 --node-name 'chef.localhost' --sudo")
   end
 end
