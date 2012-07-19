@@ -18,6 +18,7 @@ bundle install --binstubs
 
 ```bash
 ./bin/knife bootstrap 192.168.33.11 --ssh-user vagrant --distro server_ubuntu_1_9_3 --node-name "chef.domain.com" --sudo
+
 ```
 
 * `--distro` - bootstrap template (look for them in `.chef/bootstrap` folder)
@@ -92,6 +93,7 @@ Review and edit `Cheffile` and `roles/base.rb` - it is recommended to start with
 ```bash
 ./bin/knife role from file roles/base.rb
 ./bin/knife bootstrap 192.168.33.11 --ssh-user vagrant --distro ubuntu12.04-gems -r 'role[base]' --node-name "application" --sudo
+
 ```
 
 See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootstrap) for more information.
@@ -102,6 +104,7 @@ If you're using the bundled `base` role there is a special user on your node `de
 
 ```bash
 ./bin/knife ssh "role:base" -x deploy "sudo chef-client"
+
 ```
 
 There is a handy rake task `rake deploy` which uploads cookbooks, updates roles and runs `chef-client`
@@ -194,6 +197,7 @@ Lets deploy a chef server and a rails application (as an example we will take [c
 
 ```bash
 ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password yourpassword --distro server_ubuntu_1_9_3 --node-name "li483-124.members.linode.com"
+
 ```
 
 * Navigate to http://li483-124.members.linode.com:4040. Default credentials are admin/chefchef. Change them after the first login.
@@ -222,6 +226,7 @@ client_key      'client.pem'                               # your client key
 
 ```bash
 ./bin/knife bootstrap 50.116.44.124 --ssh-user root --ssh-password yourpassword --distro ubuntu12.04-gems -r 'role[copycopter]' --node-name "copycopter"
+
 ```
 
 ** Important: check that server hostname is the same as its domain **
