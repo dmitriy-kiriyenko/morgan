@@ -62,9 +62,9 @@ Upload cookbooks to chef server
 
 ### Managing custom cookbooks
 
-The `cookbooks` directory in your repository is used **only** for cookbooks managed by librarian. This directory is ignored by git and it's really bad idea to change anything inside this directory. To manage your custom cookbooks you should place them into `vendor-cookbooks` directory and put them under the version control.
+The `vendor-cookbooks` directory in your repository is used **only** for cookbooks managed by librarian. This directory is ignored by git and it's really bad idea to change anything inside this directory. To manage your custom cookbooks you should place them into `cookbooks` directory and put them under the version control.
 
-`knife` is setup automatically to look for your cookbooks in both directories. The `vendor-cookbooks` directory has higher priority so when you'd run `bin/knife cookbook create foo` cookbook would be created in vendored directory.
+`knife` is setup automatically to look for your cookbooks in both directories. The `cookbooks` directory has higher priority so when you'd run `bin/knife cookbook create foo` cookbook would be created in this directory.
 
 ## Roles
 
@@ -111,9 +111,9 @@ There is a handy rake task `rake deploy` which uploads cookbooks, updates roles 
 
 ## Bundled roles
 
-There are several pre-bundled roles which you can use as a building blocks for a bigger "real" roles. This pre-bundled roles are named with an underscore sign and should not be used to search & query nodes. You should create roles with a meaningful names like 'appserver' or 'db-slave' it is better to avoid names like 'mysql' or 'postfix'.
+There are several pre-bundled roles which you can use as a building blocks for a bigger roles. You should create roles with a meaningful names like 'appserver' or 'db-slave' it is better to avoid names like 'mysql' or 'postfix'.
 
-### _base
+### base
 
 Base role is applied to all nodes. It enables firewall and sets up special deployment and administrator accounts for a node. It sets up ssh authorized keys.
 
@@ -124,58 +124,47 @@ Administrator users are users who can do `sudo su -`. There are could be several
 Here is quite self-descriptive sample attributes set for setting up deployment user and one admin user:
 
 ```ruby
-:maintenance => {
-  :deploy_user => {
-    :name => 'deploy',
-    :ssh_key => 'ssh-rsa AAAAB3Nza...='
+maintenance: {
+  deploy_user: {
+    name: 'deploy',
+    group: 'deploy',
+    ssh_key: 'ssh-rsa AAndds...='
   },
-  :admin_users => [
-    {
-      :name => 'igor',
-      :ssh_key => 'ssh-rsa AAAAB3Nza...='
-    }
-  ]
+  admin_users: [{
+    name: 'ia',
+    ssh_key: 'ssh-rsa KADSAW...='
+  }]
 }
 ```
 
-### _chef-server
+### chef-server
 
 Chef server role opens ports that are used for chef server (4000 & 4040). For a more rock-solid chef server setup it is better to put a proxy before (nginx or Apache).
 
-### _postfix
+### postfix
 
 This role installs postfix package and does minimal require configuration. Pay attention to set the following attributes:
 
 ```ruby
-:postfix => {
-  "mydomain" => "node-domain.com",
-  "myorigin" => "node-domain.com"
+postfix: {
+  mydomain: 'node-domain.com',
+  myorigin: 'node-domain.com'
 }
 ```
 
 See [postfix cookbook description](https://github.com/opscode-cookbooks/postfix) for advanced setup & tuning.
 
-### _mysql-server
-
-Installs and sets up MySQL server and client. See [MySQL cookbook description](https://github.com/opscode-cookbooks/mysql) for advanced setup & tuning.
-
-Hint: cookbook generates random password for `root` mysql user. You can later retrieve it as a node attribute `node[:mysql][:server_root_password]`
-
-### _postgresql-server
+### postgresql-server
 
 Installs and sets up PostgreSQL server and client. See [PostgreSQL cookbook description](https://github.com/opscode-cookbooks/postgresql) for advanced setup & tuning.
 
 Hint: cookbook generates random password for `postgres` user. You can later retrieve it as a node attribute `node[:postgresql][:password][:postgres]`
 
-### _nginx
+### nginx
 
 Installs nginx from Ubuntu repository. You can tune it to be built from sources. Also applying this role will open port 80.
 
-### _elasticsearch
-
-Installs elasticsearch & creates a service wrapper for it
-
-### _nodejs
+### nodejs
 
 Installs Node.js from deb package. Can be used to run node applications and as javascript environment for Rails Asset Pipeline. Package installed from Chris Lea's PPA.
 
@@ -184,7 +173,7 @@ Installs Node.js from deb package. Can be used to run node applications and as j
 [Foodcritic](http://acrmp.github.com/foodcritic/) is bundled with stacker and can be used for linting your cookbooks.
 
 ```bash
-./bin/foodcritic vendor-cookbooks
+./bin/foodcritic cookbooks
 ```
 It's a good practice to run it frequently and follow its suggestions.
 
