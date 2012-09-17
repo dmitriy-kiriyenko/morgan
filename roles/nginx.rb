@@ -1,4 +1,4 @@
-name "_nginx"
+name "nginx"
 description "Installs and configures nginx reverse proxy"
 
 default_attributes :firewall => {

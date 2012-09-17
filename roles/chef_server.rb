@@ -1,4 +1,4 @@
-name "_chef-server"
+name "chef-server"
 description "Chef server - open firewall ports for connections to chef-server"
 
 default_attributes :firewall => {
