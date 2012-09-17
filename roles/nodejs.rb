@@ -1,4 +1,4 @@
-name "nodejs"
-description "Installs node js from deb package"
+name 'nodejs'
+description 'Installs node js from deb package'
 
-run_list "recipe[nodejs]"
+run_list 'recipe[nodejs]'
