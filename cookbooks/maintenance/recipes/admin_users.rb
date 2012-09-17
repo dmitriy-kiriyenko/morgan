@@ -1,4 +1,4 @@
-admin_users = Array(node['maintance']['admin_users'])
+admin_users = Array(node['maintenance']['admin_users'])
 
 if admin_users.any?
   file '/etc/sudoers.d/admin' do

@@ -1,5 +1,5 @@
-deploy_user  = node['maintance']['deploy_user']['name']
-deploy_group = node['maintance']['deploy_user']['group']
+deploy_user  = node['maintenance']['deploy_user']['name']
+deploy_group = node['maintenance']['deploy_user']['group']
 database_params = node['copycopter']['database']
 
 application 'copycopter' do

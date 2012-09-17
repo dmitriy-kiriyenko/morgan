@@ -1,7 +1,7 @@
 name "_base"
 description "Base role applied to all nodes."
 
-default_attributes :maintance => {
+default_attributes :maintenance => {
                      :deploy_user => {
                        :name => 'deploy',
                        :group => 'deploy',
@@ -15,4 +15,4 @@ default_attributes :maintance => {
                      ]
                    }
 
-run_list "recipe[ufw]", "recipe[maintance]"
+run_list "recipe[ufw]", "recipe[maintenance]"

@@ -124,7 +124,7 @@ Administrator users are users who can do `sudo su -`. There are could be several
 Here is quite self-descriptive sample attributes set for setting up deployment user and one admin user:
 
 ```ruby
-:maintance => {
+:maintenance => {
   :deploy_user => {
     :name => 'deploy',
     :ssh_key => 'ssh-rsa AAAAB3Nza...='

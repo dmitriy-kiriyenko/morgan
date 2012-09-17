@@ -1,6 +1,6 @@
-username = node['maintance']['deploy_user']['name']
-group    = node['maintance']['deploy_user']['group']
-ssh_key  = node['maintance']['deploy_user']['ssh_key']
+username = node['maintenance']['deploy_user']['name']
+group    = node['maintenance']['deploy_user']['group']
+ssh_key  = node['maintenance']['deploy_user']['ssh_key']
 
 group 'deploy'
 
