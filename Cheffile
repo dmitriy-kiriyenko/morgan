@@ -7,8 +7,7 @@ cookbook 'git'
 cookbook 'firewall', :git => 'https://github.com/opscode-cookbooks/firewall.git'
 cookbook 'ufw'
 
-# MySQL - server + client
-cookbook 'mysql', :git => 'https://github.com/cjoudrey/mysql'
+# postgresql
 cookbook 'postgresql'
 
 # nginx
@@ -16,9 +15,6 @@ cookbook 'nginx'
 
 # Postfix
 cookbook 'postfix'
-
-# elasticsearch
-cookbook 'elasticsearch', :git => 'https://github.com/promisedlandt/cookbook-elasticsearch'
 
 # cookbook manages deployment of rails application
 cookbook 'application_ruby', :git => 'https://github.com/opscode-cookbooks/application_ruby'

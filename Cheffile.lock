@@ -11,7 +11,6 @@ SITE
       runit (>= 0.0.0)
       tomcat (>= 0.0.0)
       unicorn (>= 0.0.0)
-    ark (0.0.10)
     bluepill (1.0.4)
     build-essential (1.0.2)
     chef_handler (1.0.6)
@@ -89,20 +88,10 @@ GIT
   specs:
     firewall (0.8.0)
 
-GIT
-  remote: https://github.com/promisedlandt/cookbook-elasticsearch
-  ref: master
-  sha: 01680d41c3b9ddf924e47d451a3bdb97fc7d63c4
-  specs:
-    elasticsearch (0.0.2)
-      ark (>= 0.0.0)
-
 DEPENDENCIES
   application_ruby (>= 0)
-  elasticsearch (>= 0)
   firewall (>= 0)
   git (>= 0)
-  mysql (>= 0)
   nginx (>= 0)
   nodejs (>= 0)
   postfix (>= 0)

@@ -5,5 +5,5 @@ vendor/
 .chef/checksums
 .bundle/
 .vagrant
-/cookbooks
+/vendor-cookbooks
 /tmp
