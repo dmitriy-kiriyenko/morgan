@@ -206,9 +206,9 @@ client_key      'client.pem'                               # your client key
 * Upload cookbooks and roles to server
 
 ```bash
-./bin/rake roles
+./bin/rake deploy:roles
 ./bin/librarian-chef install
-./bin/knife cookbook upload -a
+./bin/rake deploy:cookbooks
 ```
 
 * Bootstrap the node. Usually it would be a separate server. But in this case we would bootstrap the same physical server.
