@@ -20,6 +20,7 @@ if admin_users.any?
       comment "Admin #{username}"
       home "/home/#{username}"
       gid 'server_admin'
+      shell '/bin/bash'
       supports :manage_home => true
     end
 
@@ -31,7 +32,6 @@ if admin_users.any?
     end
 
     file "/home/#{username}/.ssh/authorized_keys" do
-      action :create_if_missing
       content ssh_key
       owner username
       group 'server_admin'
