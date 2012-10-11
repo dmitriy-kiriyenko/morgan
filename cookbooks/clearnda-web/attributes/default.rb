@@ -9,4 +9,3 @@ default['clearnda_web']['database']['adapter']  = 'postgresql'
 default['clearnda_web']['database']['database'] = 'clearnda'
 default['clearnda_web']['database']['host']     = 'localhost'
 default['clearnda_web']['database']['username'] = 'postgres'
-default['clearnda_web']['database']['password'] = node['postgresql']['password']['postgres']

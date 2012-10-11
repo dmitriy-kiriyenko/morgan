@@ -17,6 +17,7 @@ application node['clearnda_web']['app_name'] do
       database_params.each do |key, value|
         send(key.to_sym, value)
       end
+      password node['postgresql']['password']['postgres']
     end
   end
 
