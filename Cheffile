@@ -19,5 +19,7 @@ cookbook 'postfix'
 # cookbook manages deployment of rails application
 cookbook 'application_ruby', :git => 'https://github.com/opscode-cookbooks/application_ruby'
 
+cookbook 'application_nginx'
+
 # Node.js
 cookbook 'nodejs', :git => 'https://github.com/iafonov/chef-nodejs.git'
