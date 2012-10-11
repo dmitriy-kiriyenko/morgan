@@ -11,6 +11,9 @@ SITE
       runit (>= 0.0.0)
       tomcat (>= 0.0.0)
       unicorn (>= 0.0.0)
+    application_nginx (1.0.0)
+      application (>= 0.0.0)
+      nginx (>= 0.0.0)
     bluepill (1.0.4)
     build-essential (1.0.2)
     chef_handler (1.0.6)
@@ -89,6 +92,7 @@ GIT
     firewall (0.8.0)
 
 DEPENDENCIES
+  application_nginx (>= 0)
   application_ruby (>= 0)
   firewall (>= 0)
   git (>= 0)
