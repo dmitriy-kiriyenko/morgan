@@ -1,6 +1,6 @@
 deploy_user  = node['maintenance']['deploy_user']['name']
 deploy_group = node['maintenance']['deploy_user']['group']
-database_params = node['clearnda_web']['database']
+database_params = node['clearnda_web']['database'].merge('password' => node['postgresql']['password']['postgres'])
 
 application node['clearnda_web']['app_name'] do
   path "/var/www/apps/#{node['clearnda_web']['app_name']}"
@@ -17,7 +17,6 @@ application node['clearnda_web']['app_name'] do
       database_params.each do |key, value|
         send(key.to_sym, value)
       end
-      password node['postgresql']['password']['postgres']
     end
   end
 

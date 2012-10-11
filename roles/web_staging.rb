@@ -3,7 +3,7 @@ description 'Manages deployment of ClearNDA application'
 
 default_attributes clearnda_web: {
                      environment: 'staging',
-                     application_server_role: 'web_staging'
+                     application_server_role: 'web-staging'
                    }
 
 run_list 'role[base]',
