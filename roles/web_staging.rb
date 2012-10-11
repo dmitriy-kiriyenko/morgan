@@ -8,7 +8,6 @@ default_attributes clearnda_web: {
 
 run_list 'role[base]',
          'role[postgresql-server]',
-         'role[nginx]',
          'role[postfix]',
          'role[nodejs]',
          'recipe[clearnda-web]'

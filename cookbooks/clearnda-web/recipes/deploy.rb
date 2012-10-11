@@ -29,7 +29,8 @@ application node['clearnda_web']['app_name'] do
   end
 
   nginx_load_balancer do
-    only_if { node['roles'].include?('clearnda_web_load_balancer') }
+    only_if { node['roles'].include?('web-load-balancer') }
     application_server_role node['clearnda_web']['application_server_role']
+    application_port 8080
   end
 end
