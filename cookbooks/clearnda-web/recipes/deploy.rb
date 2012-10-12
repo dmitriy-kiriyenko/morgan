@@ -14,16 +14,15 @@ application node['clearnda_web']['app_name'] do
 
   # FIXME: shit. Should use reciped from application_ruby
   before_symlink do
-    execute 'create_and_migrate_database' do
-      command 'bundle exec rake db:create db:migrate'
+    directory "/var/lib/#{node['clearnda_web']['app_name']}" do
       user deploy_user
       group deploy_group
-      cwd release_path
-      environment ({'RAILS_ENV' => node['clearnda_web']['environment']})
+      mode '775'
+      recursive true
     end
 
-    execute 'compile_assets' do
-      command 'bundle exec rake assets:precompile'
+    execute 'prepare_application' do
+      command 'bundle exec rake db:create db:migrate assets:precompile --trace'
       user deploy_user
       group deploy_group
       cwd release_path
@@ -32,7 +31,6 @@ application node['clearnda_web']['app_name'] do
   end
 
   rails do
-    #migration_command "bundle exec rake db:create db:migrate"
     gems ['bundler']
 
     database do
@@ -44,8 +42,8 @@ application node['clearnda_web']['app_name'] do
 
   unicorn do
     restart_command do
-      execute "/etc/init.d/#{node['clearnda_web']['app_name']} hup" do
-        user "root"
+      service node['clearnda_web']['app_name'] do
+        action :restart
       end
     end
   end
@@ -54,5 +52,6 @@ application node['clearnda_web']['app_name'] do
     only_if { node['roles'].include?('web-load-balancer') }
     application_server_role node['clearnda_web']['application_server_role']
     application_port 8080
+    static_files '/assets' => 'public/assets'
   end
 end
