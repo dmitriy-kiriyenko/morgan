@@ -55,7 +55,7 @@ install_chef_client() {
   (
   cat <<'EOP'
   <%= validation_key %>
-  EOP
+EOP
   ) > /tmp/validation.pem
   awk NF /tmp/validation.pem > /etc/chef/validation.pem
   rm /tmp/validation.pem
@@ -64,7 +64,7 @@ install_chef_client() {
   (
   cat <<'EOP'
   <%= encrypted_data_bag_secret %>
-  EOP
+EOP
   ) > /tmp/encrypted_data_bag_secret
   awk NF /tmp/encrypted_data_bag_secret > /etc/chef/encrypted_data_bag_secret
   rm /tmp/encrypted_data_bag_secret
@@ -73,13 +73,13 @@ install_chef_client() {
   (
   cat <<'EOP'
   <%= config_content %>
-  EOP
+EOP
   ) > /etc/chef/client.rb
 
   (
   cat <<'EOP'
   <%= { "run_list" => @run_list }.to_json %>
-  EOP
+EOP
   ) > /etc/chef/first-boot.json
 
   <%= start_chef %>'
