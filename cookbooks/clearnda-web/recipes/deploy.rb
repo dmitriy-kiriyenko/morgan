@@ -4,13 +4,35 @@ database_params = node['clearnda_web']['database'].to_hash.merge('password' => n
 
 application node['clearnda_web']['app_name'] do
   path "/var/www/apps/#{node['clearnda_web']['app_name']}"
+  environment_name node['clearnda_web']['environment']
   owner deploy_user
   group deploy_group
+  action :force_deploy # FIXME: remove this line when all works
 
   repository node['clearnda_web']['repository']
   revision node['clearnda_web']['revision']
 
+  # FIXME: shit. Should use reciped from application_ruby
+  before_symlink do
+    execute 'create_and_migrate_database' do
+      command 'bundle exec rake db:create db:migrate'
+      user deploy_user
+      group deploy_group
+      cwd release_path
+      environment ({'RAILS_ENV' => node['clearnda_web']['environment']})
+    end
+
+    execute 'compile_assets' do
+      command 'bundle exec rake assets:precompile'
+      user deploy_user
+      group deploy_group
+      cwd release_path
+      environment ({'RAILS_ENV' => node['clearnda_web']['environment']})
+    end
+  end
+
   rails do
+    #migration_command "bundle exec rake db:create db:migrate"
     gems ['bundler']
 
     database do
