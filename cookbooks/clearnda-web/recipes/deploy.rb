@@ -1,6 +1,6 @@
 deploy_user  = node['maintenance']['deploy_user']['name']
 deploy_group = node['maintenance']['deploy_user']['group']
-database_params = node['clearnda_web']['database'].merge('password' => node['postgresql']['password']['postgres'])
+database_params = node['clearnda_web']['database'].to_hash.merge('password' => node['postgresql']['password']['postgres'])
 
 application node['clearnda_web']['app_name'] do
   path "/var/www/apps/#{node['clearnda_web']['app_name']}"
