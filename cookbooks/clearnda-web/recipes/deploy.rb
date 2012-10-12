@@ -7,7 +7,6 @@ application node['clearnda_web']['app_name'] do
   environment_name node['clearnda_web']['environment']
   owner deploy_user
   group deploy_group
-  action :force_deploy # FIXME: remove this line when all works
 
   repository node['clearnda_web']['repository']
   revision node['clearnda_web']['revision']
