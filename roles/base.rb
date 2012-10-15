@@ -33,4 +33,4 @@ JZ_KEY
                      ]
                    }
 
-run_list 'recipe[ufw]', 'recipe[maintenance]'
+run_list 'recipe[ufw]', 'recipe[maintenance]', 'recipe[ntp]'

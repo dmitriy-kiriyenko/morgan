@@ -23,3 +23,6 @@ cookbook 'application_nginx'
 
 # Node.js
 cookbook 'nodejs', :git => 'https://github.com/iafonov/chef-nodejs.git'
+
+#ntp
+cookbook 'ntp', :git => 'https://github.com/opscode-cookbooks/ntp.git'

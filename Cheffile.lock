@@ -91,6 +91,13 @@ GIT
   specs:
     firewall (0.8.0)
 
+GIT
+  remote: https://github.com/opscode-cookbooks/ntp.git
+  ref: master
+  sha: d2cf0b1e9a58c2016ed360f38ac08be266313de5
+  specs:
+    ntp (1.2.0)
+
 DEPENDENCIES
   application_nginx (>= 0)
   application_ruby (>= 0)
@@ -98,6 +105,7 @@ DEPENDENCIES
   git (>= 0)
   nginx (>= 0)
   nodejs (>= 0)
+  ntp (>= 0)
   postfix (>= 0)
   postgresql (>= 0)
   ufw (>= 0)
