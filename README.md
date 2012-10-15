@@ -177,4 +177,3 @@ It's a good practice to run it frequently and follow its suggestions.
 
 * [Dmitriy Kiriyenko](https://github.com/dmitriy-kiriyenko)
 * [Igor Afonov](https://iafonov.github.com)
-Just another commit to test deploy
