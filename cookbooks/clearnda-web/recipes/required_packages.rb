@@ -1,3 +1,5 @@
 package 'git'
 package 'libreoffice'
-package 'unoconv'
+package 'unoconv' do
+  version "0.5-1"
+end
