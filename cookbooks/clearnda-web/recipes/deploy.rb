@@ -11,15 +11,7 @@ application node['clearnda_web']['app_name'] do
   repository node['clearnda_web']['repository']
   revision node['clearnda_web']['revision']
 
-  # FIXME: shit. Should use reciped from application_ruby
   before_symlink do
-    directory "/var/lib/#{node['clearnda_web']['app_name']}" do
-      user deploy_user
-      group deploy_group
-      mode '775'
-      recursive true
-    end
-
     execute 'prepare_application' do
       command 'bundle exec rake db:create db:migrate assets:precompile --trace'
       user deploy_user
