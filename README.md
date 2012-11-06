@@ -16,7 +16,7 @@ bundle
 ## Bootstrapping the chef server
 
 ```console
-bundle exec knife bootstrap chef.clearnda.com --ssh-user root --distro server_ubuntu_1_9_3 --node-name "chef.clearnda.com" --sudo
+bundle exec knife bootstrap chef.your-app.com --ssh-user root --distro server_ubuntu_1_9_3 --node-name "chef.your-app.com" --sudo
 ```
 
 * `--distro` - bootstrap template (look for them in `.chef/bootstrap` folder)
@@ -26,7 +26,7 @@ See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootst
 
 ## Creating the first client
 
-1. Navigate to http://chef.clearnda.com:4040, (It's better to reset credentials for webui, default are `admin/chefchef`)
+1. Navigate to http://chef.your-app.com:4040, (It's better to reset credentials for webui, default are `admin/chefchef`)
 2. Create a client with the admin privileges
 3. Save private key to `.chef/client.pem` file
 4. Copy the validation key from server `/etc/chef/validation.pem` to your dev machine `.chef/validation.pem`
@@ -90,7 +90,7 @@ Review and edit `Cheffile` and `roles/base.rb` - it is recommended to start with
 
 ```console
 bundle exec knife role from file roles/base.rb
-bundle exec knife bootstrap newnode.clearnda.com --ssh-user root --distro ubuntu12.04-gems -r 'role[base]' --node-name "clearnda-web-live" --sudo
+bundle exec knife bootstrap newnode.your-app.com --ssh-user root --distro node_ubuntu_1_9_3 -r 'role[base]' --node-name "newnode.your-app.com" --sudo
 ```
 
 See [`knife bootstrap` manual](http://wiki.opscode.com/display/chef/Knife+Bootstrap) for more information.
@@ -103,7 +103,7 @@ If you're using the bundled `base` role there is a special user on your node `de
 bundle exec knife ssh "role:base" -x deploy "sudo chef-client"
 ```
 
-There is a handy rake task `rake deploy` which uploads cookbooks, updates roles and runs `chef-client`
+There is a handy rake task `rake deploy:all` which uploads cookbooks, updates roles and runs `chef-client`
 
 ## Bundled roles
 

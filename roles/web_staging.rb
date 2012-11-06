@@ -1,7 +1,7 @@
 name 'web-staging'
-description 'Manages deployment of ClearNDA application'
+description 'Manages deployment of the application'
 
-default_attributes clearnda_web: {
+default_attributes application_web: {
                      environment: 'staging',
                      application_server_role: 'web-staging'
                    }
@@ -10,4 +10,4 @@ run_list 'role[base]',
          'role[postgresql-server]',
          'role[postfix]',
          'role[nodejs]',
-         'recipe[clearnda-web]'
+         'recipe[application-web]'

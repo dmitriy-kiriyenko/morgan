@@ -1,15 +1,15 @@
 deploy_user  = node['maintenance']['deploy_user']['name']
 deploy_group = node['maintenance']['deploy_user']['group']
-database_params = node['clearnda_web']['database'].to_hash.merge('password' => node['postgresql']['password']['postgres'])
+database_params = node['application_web']['database'].to_hash.merge('password' => node['postgresql']['password']['postgres'])
 
-application node['clearnda_web']['app_name'] do
-  path "/var/www/apps/#{node['clearnda_web']['app_name']}"
-  environment_name node['clearnda_web']['environment']
+application node['application_web']['app_name'] do
+  path "/var/www/apps/#{node['application_web']['app_name']}"
+  environment_name node['application_web']['environment']
   owner deploy_user
   group deploy_group
 
-  repository node['clearnda_web']['repository']
-  revision node['clearnda_web']['revision']
+  repository node['application_web']['repository']
+  revision node['application_web']['revision']
 
   before_symlink do
     execute 'prepare_application' do
@@ -17,7 +17,7 @@ application node['clearnda_web']['app_name'] do
       user deploy_user
       group deploy_group
       cwd release_path
-      environment ({'RAILS_ENV' => node['clearnda_web']['environment']})
+      environment ({'RAILS_ENV' => node['application_web']['environment']})
     end
   end
 
@@ -33,7 +33,7 @@ application node['clearnda_web']['app_name'] do
 
   unicorn do
     restart_command do
-      service node['clearnda_web']['app_name'] do
+      service node['application_web']['app_name'] do
         action :restart
       end
     end
@@ -41,7 +41,7 @@ application node['clearnda_web']['app_name'] do
 
   nginx_load_balancer do
     only_if { node['roles'].include?('web-load-balancer') }
-    application_server_role node['clearnda_web']['application_server_role']
+    application_server_role node['application_web']['application_server_role']
     application_port 8080
     static_files '/assets' => 'public/assets'
   end
