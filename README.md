@@ -1,7 +1,7 @@
-# ClearNDA chef repository
+# Chef repository
 
-ClearNDA chef repository. It is used to handle the infrastructure of
-live and staging servers for ClearNDA
+The Chef repository. It is used to handle the infrastructure of
+live and staging servers for the web application
 
 ## Setup
 
