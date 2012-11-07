@@ -11,18 +11,12 @@ application node['application_web']['app_name'] do
   repository node['application_web']['repository']
   revision node['application_web']['revision']
 
-  before_symlink do
-    execute 'prepare_application' do
-      command 'bundle exec rake db:create db:migrate assets:precompile --trace'
-      user deploy_user
-      group deploy_group
-      cwd release_path
-      environment ({'RAILS_ENV' => node['application_web']['environment']})
-    end
-  end
+  migrate true
+  migration_command "bundle exec rake db:create db:migrate"
 
   rails do
     gems ['bundler']
+    precompile_assets true
 
     database do
       database_params.each do |key, value|
