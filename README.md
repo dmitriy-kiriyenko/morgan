@@ -1,6 +1,8 @@
-# Chef repository
+# Morgan - boilerplate chef repository
 
-The Chef repository. It is used to handle the infrastructure of
+![Morgan Freeman](http://i.minus.com/ibaoph9FAREQ8L.jpeg)
+
+It is used to handle the infrastructure of
 live and staging servers for the web application
 
 ## Setup
