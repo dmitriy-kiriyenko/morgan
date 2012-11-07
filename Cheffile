@@ -22,7 +22,7 @@ cookbook 'application_ruby', git: 'https://github.com/opscode-cookbooks/applicat
 cookbook 'application_nginx'
 
 # Node.js
-cookbook 'nodejs', git: 'https://github.com/iafonov/chef-nodejs.git'
+cookbook 'nodejs', git: 'https://github.com/phlipper/chef-nodejs.git'
 
 #ntp
 cookbook 'ntp', git: 'https://github.com/opscode-cookbooks/ntp.git'
