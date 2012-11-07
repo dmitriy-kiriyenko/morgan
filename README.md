@@ -168,7 +168,7 @@ Installs Node.js from deb package. Can be used to run node applications and as j
 
 ## Foodcritic
 
-[Foodcritic](http://acrmp.github.com/foodcritic/) is bundled with stacker and can be used for linting your cookbooks.
+[Foodcritic](http://acrmp.github.com/foodcritic/) is bundled with morgan and can be used for linting your cookbooks.
 
 ```console
 bundle exec foodcritic cookbooks
