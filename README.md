@@ -1,6 +1,6 @@
 # Morgan - boilerplate chef repository
 
-![Morgan Freeman](http://i.minus.com/ibaoph9FAREQ8L.jpeg)
+![Morgan Freeman](http://i.minus.com/i1r5VLCXfp6cq.jpg)
 
 It is used to handle the infrastructure of
 live and staging servers for the web application.
