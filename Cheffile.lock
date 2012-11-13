@@ -14,6 +14,7 @@ SITE
     application_nginx (1.0.0)
       application (>= 0.0.0)
       nginx (>= 0.0.0)
+    apt (1.5.0)
     bluepill (1.0.4)
     build-essential (1.0.2)
     chef_handler (1.0.6)
@@ -66,13 +67,6 @@ GIT
       windows (>= 0.0.0)
 
 GIT
-  remote: https://github.com/iafonov/chef-nodejs.git
-  ref: master
-  sha: 2de69ed8526bcc6d8f60b2ec03a5c2d9ed41b71d
-  specs:
-    nodejs (1.0.0)
-
-GIT
   remote: https://github.com/opscode-cookbooks/application_ruby
   ref: master
   sha: 47ddb37a07454b3c16b30336fd4f1b3cdbc853b0
@@ -97,6 +91,14 @@ GIT
   sha: d2cf0b1e9a58c2016ed360f38ac08be266313de5
   specs:
     ntp (1.2.0)
+
+GIT
+  remote: https://github.com/phlipper/chef-nodejs.git
+  ref: master
+  sha: eb212c3a2c3286a1bca0a16a182170b17fdd55c6
+  specs:
+    nodejs (1.2.0)
+      apt (>= 1.4.4)
 
 DEPENDENCIES
   application_nginx (>= 0)

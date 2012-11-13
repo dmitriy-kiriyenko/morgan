@@ -105,7 +105,7 @@ If you're using the bundled `base` role there is a special user on your node `de
 bundle exec knife ssh "role:base" -x deploy "sudo chef-client"
 ```
 
-There is a handy rake task `rake deploy:all` which uploads cookbooks, updates roles and runs `chef-client`
+There is a handy thor task `thor deploy -u` which uploads cookbooks, updates roles and runs `chef-client`
 
 ## Bundled roles
 

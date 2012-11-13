@@ -127,3 +127,4 @@ DEPENDENCIES
   knife-server
   librarian
   rake
+  thor
