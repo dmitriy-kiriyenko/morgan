@@ -10,4 +10,5 @@ run_list 'role[base]',
          'role[postgresql-server]',
          'role[postfix]',
          'role[nodejs]',
+         'role[nginx]',
          'recipe[application-web]'
