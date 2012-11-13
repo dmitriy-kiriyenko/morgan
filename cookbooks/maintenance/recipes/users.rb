@@ -1,6 +1,9 @@
-username = node['maintenance']['deploy_user']['name']
-group    = node['maintenance']['deploy_user']['group']
-ssh_key  = node['maintenance']['deploy_user']['ssh_key']
+username    = node['maintenance']['deploy_user']['name']
+group       = node['maintenance']['deploy_user']['group']
+admin_users = Array(node['maintenance']['admin_users'])
+ssh_key     = admin_users.map {|user| user[:ssh_key]}.unshift(
+                node['maintenance']['deploy_user']['ssh_key']
+              ).join("\n")
 
 group 'deploy'
 
