@@ -6,15 +6,15 @@ export DEBIAN_FRONTEND=noninteractive
 set -x
 
 install_1_9_3() {
-  if ruby -v | grep -q "1.9.3p194" >/dev/null ; then
+  if ruby -v | grep -q "1.9.3p327" >/dev/null ; then
     printf "Ruby 1.9.3 is already installed skipping...\n"
     return
   fi
 
   cd /tmp
-  wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
-  tar -xvzf ruby-1.9.3-p194.tar.gz
-  cd ruby-1.9.3-p194/
+  wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p327.tar.gz
+  tar -xvzf ruby-1.9.3-p327.tar.gz
+  cd ruby-1.9.3-p327/
   ./configure && make && make install
   gem update --system
   gem install bundler rake --no-ri --no-rdoc
