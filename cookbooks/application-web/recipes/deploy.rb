@@ -12,7 +12,7 @@ application node['application_web']['app_name'] do
   revision node['application_web']['revision']
 
   migrate true
-  migration_command "bundle exec rake db:create db:migrate"
+  migration_command "bundle exec rake db:create"
 
   rails do
     gems ['bundler']
@@ -38,5 +38,7 @@ application node['application_web']['app_name'] do
     application_server_role node['application_web']['application_server_role']
     application_port 8080
     static_files '/assets' => 'public/assets'
+    ssl false
+    template 'load_balancer.conf.erb'
   end
 end
