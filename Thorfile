@@ -9,7 +9,7 @@ class Default < Thor
   method_option :role, type: :string, default: nil, aliases: '-r'
   method_option :upload, type: :boolean, default: false, aliases: '-u'
   def deploy(pattern=nil)
-    run "bundle exec knife ssh \"#{determine_pattern(pattern)}\" -x deploy\"sudo chef-client\""
+    run "bundle exec knife ssh \"#{determine_pattern(pattern)}\" -x deploy \"sudo chef-client\""
     call_upload if options.upload?
   end
 
