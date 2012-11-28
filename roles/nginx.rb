@@ -5,6 +5,9 @@ default_attributes firewall: {
                      rules: [
                        { http: { port: '80'} }
                      ]
+                   },
+                   nginx: {
+                     multi_accept: 'on'
                    }
 
 run_list 'recipe[nginx]'
