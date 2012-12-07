@@ -18,10 +18,10 @@ server {
     }
   <% end %>
 
-  root <%= ::File.join(@resource.application.path, "current") %>;
+  root <%= ::File.join(@resource.application.path, 'current', 'public') %>;
   try_files $uri/index.html $uri.html $uri @app;
 
-  location / {
+  location @app {
     proxy_redirect off;
     include /etc/nginx/proxy_params;
 
