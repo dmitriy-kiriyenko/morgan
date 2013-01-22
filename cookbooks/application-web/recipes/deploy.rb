@@ -43,10 +43,13 @@ application node['application_web']['app_name'] do
 
   nginx_load_balancer do
     only_if { node['roles'].include?('web-load-balancer') }
+
     application_server_role node['application_web']['application_server_role']
-    application_port 8080
-    static_files '/assets' => 'public/assets'
-    ssl false
-    template 'load_balancer.conf.erb'
+    application_port        8080
+    static_files            '/assets' => 'public/assets'
+    ssl                     true
+    ssl_certificate         node['ssl_certificates']['crt_file']
+    ssl_certificate_key     node['ssl_certificates']['key_file']
+    template                'load_balancer.conf.erb'
   end
 end
