@@ -1,6 +1,6 @@
 upstream <%= @resource.application.name %> {
   <% @hosts.each do |node| %>
-    server <%= node.attribute?('cloud') ? node['cloud']['local_ipv4'] : node['ipaddress'] %>:<%= @resource.application_port %>;
+    server <%= node.attribute?('cloud') ? node['cloud']['public_ips'][0] : node['ipaddress'] %>:<%= @resource.application_port %>;
   <% end %>
 }
 
