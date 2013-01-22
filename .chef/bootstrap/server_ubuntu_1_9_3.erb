@@ -77,6 +77,11 @@ PRESEED
 install_chef_server() {
   preseed_chef_pkg
 
+  # experimental fix for #31
+  gem update --no-ri --no-rdoc
+  gem install ohai --no-ri --no-rdoc --verbose
+  gem install chef chef-server --no-ri --no-rdoc --verbose
+
   apt-get install -y --force-yes chef chef-server
 }
 
