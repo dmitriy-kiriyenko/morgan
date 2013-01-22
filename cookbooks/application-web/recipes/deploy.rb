@@ -4,6 +4,12 @@ database_params = node['application_web']['database'].to_hash.merge(
   'password' => node['postgresql']['password']['postgres']
 )
 
+shared_children = {
+  'log' => 'log',
+  'tmp_pids' => 'tmp/pids',
+  'public_uploads' => 'public/uploads'
+}
+
 application node['application_web']['app_name'] do
   path "/var/www/apps/#{node['application_web']['app_name']}"
   environment_name node['application_web']['environment']
@@ -13,11 +19,18 @@ application node['application_web']['app_name'] do
   repository node['application_web']['repository']
   revision node['application_web']['revision']
 
-  purge_before_symlink ['log', 'tmp/pids', 'public/uploads']
+  before_symlink do
+    shared_children.each do |dir, _|
+      directory "#{shared_path}/#{dir}" do
+        owner deploy_user
+        group deploy_group
+        mode "0755"
+      end
+    end
+  end
 
-  symlinks 'log' => 'log',
-           'tmp_pids' => 'tmp/pids',
-           'public_uploads' => 'public/uploads'
+  purge_before_symlink shared_children.values
+  symlinks shared_children
 
   migrate true
   migration_command "bundle exec rake db:create"
