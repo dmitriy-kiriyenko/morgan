@@ -52,7 +52,7 @@ set_hostname_for_ubuntu() {
 install_chef_client() {
   gem update --no-rdoc --no-ri
   gem install ohai --no-rdoc --no-ri --verbose
-  gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
+  gem install chef --no-rdoc --no-ri --verbose
 
   mkdir -p /etc/chef
 
