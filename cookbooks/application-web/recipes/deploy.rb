@@ -11,6 +11,12 @@ application node['application_web']['app_name'] do
   repository node['application_web']['repository']
   revision node['application_web']['revision']
 
+  purge_before_symlink ['log', 'tmp/pids', 'public/uploads']
+
+  symlinks 'log' => 'log',
+           'tmp_pids' => 'tmp/pids',
+           'public_uploads' => 'public/uploads'
+
   migrate true
   migration_command "bundle exec rake db:create"
 
