@@ -7,6 +7,8 @@ upstream <%= @resource.application.name %> {
 server {
   server_name <%= @resource.server_name.is_a?(Array) ? @resource.server_name.join(' ') : @resource.server_name %>;
 
+  client_max_body_size <%= node['application_web']['nginx']['client_max_body_size'] %>;
+
   listen 80;
 
   <% if @resource.ssl %>

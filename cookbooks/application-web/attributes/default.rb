@@ -10,6 +10,8 @@ default['application_web']['database']['database'] = 'application-web'
 default['application_web']['database']['host']     = 'localhost'
 default['application_web']['database']['username'] = 'postgres'
 
+default['application_web']['nginx']['client_max_body_size'] = '100m'
+
 default['ssl_certificates']['path']     = '/etc/ssl_certs'
 default['ssl_certificates']['crt_file'] = "#{node['ssl_certificates']['path']}/#{node['application_web']['app_name']}.crt"
 default['ssl_certificates']['key_file'] = "#{node['ssl_certificates']['path']}/#{node['application_web']['app_name']}.key"
